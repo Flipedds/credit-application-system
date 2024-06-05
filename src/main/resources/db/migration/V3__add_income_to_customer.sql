@@ -1,0 +1,5 @@
+ALTER TABLE customer
+    ADD income DECIMAL NULL;
+
+ALTER TABLE customer
+    MODIFY income DECIMAL NOT NULL;
