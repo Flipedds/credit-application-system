@@ -4,6 +4,7 @@ import me.dio.credit.application.system.entity.Customer
 import me.dio.credit.application.system.repositories.CustomerRepository
 import me.dio.credit.application.system.service.ICustomerService
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CustomerService(
@@ -12,9 +13,9 @@ class CustomerService(
 
     override fun save(customer: Customer): Customer = this.customerRepository.save(customer)
 
-    override fun findById(id: Long): Customer = this.customerRepository.findById(id).orElseThrow {
-        throw RuntimeException("Id $id not found")
-    }
+    override fun findById(id: Long): Optional<Customer> = this.customerRepository.findById(id)
 
     override fun delete(id: Long) = this.customerRepository.deleteById(id)
+
+    override fun getAll(): List<Customer> = this.customerRepository.findAll()
 }

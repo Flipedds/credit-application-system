@@ -1,8 +1,11 @@
 package me.dio.credit.application.system.controllers.dtos
 
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.NotNull
 import me.dio.credit.application.system.entity.Address
 import me.dio.credit.application.system.entity.Customer
+import org.hibernate.validator.constraints.br.CPF
 import java.io.Serializable
 import java.math.BigDecimal
 
@@ -10,14 +13,14 @@ import java.math.BigDecimal
  * DTO for {@link me.dio.credit.application.system.entity.Customer}
  */
 data class CustomerDto(
-    @NotNull(message = "First name is null") val firstName: String,
-    @NotNull(message = "Last name is null") val lastName: String,
-    @NotNull(message = "CPF is null") val cpf: String,
-    @NotNull(message = "Income is null") val income: BigDecimal,
-    @NotNull(message = "E-mail is null") val email: String,
-    @NotNull(message = "Password is null") val password: String,
-    @NotNull(message = "Zip Code is null") val zipCode: String,
-    @NotNull(message = "Street is null") val street: String
+    @NotNull @NotEmpty val firstName: String,
+    @NotNull @NotEmpty val lastName: String,
+    @NotNull @NotEmpty @CPF val cpf: String,
+    @NotNull @NotEmpty val income: BigDecimal,
+    @NotNull @NotEmpty @Email val email: String,
+    @NotNull @NotEmpty val password: String,
+    @NotNull @NotEmpty val zipCode: String,
+    @NotNull @NotEmpty val street: String
 ) : Serializable {
     fun toEntity(): Customer  = Customer(
         firstName = this.firstName,

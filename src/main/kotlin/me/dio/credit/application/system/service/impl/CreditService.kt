@@ -5,6 +5,7 @@ import me.dio.credit.application.system.repositories.CreditRepository
 import me.dio.credit.application.system.service.ICreditService
 import org.springframework.stereotype.Service
 import java.util.*
+import kotlin.jvm.optionals.getOrNull
 
 @Service
 class CreditService(
@@ -12,7 +13,7 @@ class CreditService(
 ) : ICreditService {
     override fun save(credit: Credit): Credit {
         credit.apply {
-            customer = customerService.findById(credit.customer?.id!!)
+            customer = customerService.findById(credit.customer?.id!!).getOrNull()
         }
         return this.creditRepository.save(credit)
     }
