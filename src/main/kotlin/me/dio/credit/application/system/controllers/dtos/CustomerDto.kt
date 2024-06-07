@@ -13,14 +13,14 @@ import java.math.BigDecimal
  * DTO for {@link me.dio.credit.application.system.entity.Customer}
  */
 data class CustomerDto(
-    @NotNull @NotEmpty val firstName: String,
-    @NotNull @NotEmpty val lastName: String,
-    @NotNull @NotEmpty @CPF val cpf: String,
-    @NotNull @NotEmpty val income: BigDecimal,
-    @NotNull @NotEmpty @Email val email: String,
-    @NotNull @NotEmpty val password: String,
-    @NotNull @NotEmpty val zipCode: String,
-    @NotNull @NotEmpty val street: String
+    @field:NotEmpty val firstName: String,
+    @field:NotEmpty val lastName: String,
+    @field:NotEmpty @CPF val cpf: String,
+    @field:NotNull val income: BigDecimal,
+    @field:NotEmpty @Email val email: String,
+    @field:NotEmpty val password: String,
+    @field:NotEmpty val zipCode: String,
+    @field:NotEmpty val street: String
 ) : Serializable {
     fun toEntity(): Customer  = Customer(
         firstName = this.firstName,
