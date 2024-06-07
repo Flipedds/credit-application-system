@@ -16,6 +16,7 @@ class CreditResource(
     val creditService: CreditService
 ) {
     @PostMapping("/")
+    @ResponseStatus(HttpStatus.CREATED)
     fun saveCredit(@RequestBody @Valid credit: CreditDto): ResponseEntity<CreditViewDto> =
         ResponseEntity.status(HttpStatus.CREATED).body(this.creditService.save(credit.toEntity()).toViewDto())
 
