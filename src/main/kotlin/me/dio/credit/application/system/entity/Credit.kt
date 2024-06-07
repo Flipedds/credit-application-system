@@ -1,5 +1,6 @@
 package me.dio.credit.application.system.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import me.dio.credit.application.system.controllers.dtos.CreditViewDto
 import me.dio.credit.application.system.controllers.dtos.CreditViewListDto
@@ -18,7 +19,7 @@ data class Credit(
     @Column(nullable = false) val dayFirstInstallment: LocalDate,
     @Column(nullable = false) val numberOfInstallment: Int = 0,
     @Enumerated val status: Status = Status.IN_PROGRESS,
-    @ManyToOne() var customer: Customer? = null,
+    @JsonIgnore @ManyToOne() var customer: Customer? = null,
 ) {
     fun toListViewDto(): CreditViewListDto = CreditViewListDto(
         creditCode = this.creditCode, creditValue = this.creditValue, numberOfInstallment = this.numberOfInstallment
