@@ -8,7 +8,6 @@ spring:
     show-sql: true
   application:
     name: credit-application-system
-
-
-
-
+springdoc:
+  swagger-ui:
+    path: /index.html
