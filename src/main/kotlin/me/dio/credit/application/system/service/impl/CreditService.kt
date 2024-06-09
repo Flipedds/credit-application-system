@@ -2,15 +2,16 @@ package me.dio.credit.application.system.service.impl
 
 import me.dio.credit.application.system.entity.Credit
 import me.dio.credit.application.system.exception.CreditServiceException
-import me.dio.credit.application.system.repositories.CreditRepository
+import me.dio.credit.application.system.repositories.ICreditRepository
 import me.dio.credit.application.system.service.ICreditService
+import me.dio.credit.application.system.service.ICustomerService
 import org.springframework.stereotype.Service
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
 @Service
 class CreditService(
-    private val creditRepository: CreditRepository, private val customerService: CustomerService
+    private val creditRepository: ICreditRepository, private val customerService: ICustomerService
 ) : ICreditService {
     override fun save(credit: Credit): Credit {
         credit.apply {

@@ -5,7 +5,7 @@ import me.dio.credit.application.system.controllers.dtos.CustomerDto
 import me.dio.credit.application.system.controllers.dtos.CustomerUpdateDto
 import me.dio.credit.application.system.controllers.dtos.CustomerViewDto
 import me.dio.credit.application.system.entity.Customer
-import me.dio.credit.application.system.service.impl.CustomerService
+import me.dio.credit.application.system.service.ICustomerService
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn
 import org.springframework.http.HttpStatus
@@ -17,7 +17,7 @@ import java.util.Optional
 @RequestMapping("/customers")
 @CrossOrigin(origins = ["*"])
 class CustomerResource(
-    private val customerService: CustomerService
+    private val customerService: ICustomerService
 ) {
     @PostMapping("/create")
     fun saveCustomer(@RequestBody @Valid customerDto: CustomerDto): ResponseEntity<CustomerViewDto> =

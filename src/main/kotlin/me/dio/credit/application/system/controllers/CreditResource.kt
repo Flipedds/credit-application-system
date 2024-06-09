@@ -4,7 +4,7 @@ import jakarta.validation.Valid
 import me.dio.credit.application.system.controllers.dtos.CreditDto
 import me.dio.credit.application.system.controllers.dtos.CreditViewDto
 import me.dio.credit.application.system.controllers.dtos.CreditViewListDto
-import me.dio.credit.application.system.service.impl.CreditService
+import me.dio.credit.application.system.service.ICreditService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -12,8 +12,9 @@ import java.util.UUID
 
 @RestController
 @RequestMapping("/credits")
+@CrossOrigin(origins = ["*"])
 class CreditResource(
-    val creditService: CreditService
+    val creditService: ICreditService
 ) {
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
