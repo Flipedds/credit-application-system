@@ -19,7 +19,7 @@ import java.util.Optional
 class CustomerResource(
     private val customerService: ICustomerService
 ) {
-    @PostMapping("/create")
+    @PostMapping("/")
     fun saveCustomer(@RequestBody @Valid customerDto: CustomerDto): ResponseEntity<CustomerViewDto> =
         ResponseEntity.status(HttpStatus.CREATED)
             .body(this.customerService.save(customerDto.toEntity()).toViewDto().apply {
