@@ -1,8 +1,11 @@
 package me.dio.credit.application.system.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import me.dio.credit.application.system.controllers.CreditResourceTest.Companion
+import me.dio.credit.application.system.controllers.dtos.CreditDto
 import me.dio.credit.application.system.controllers.dtos.CustomerDto
 import me.dio.credit.application.system.controllers.dtos.CustomerUpdateDto
+import me.dio.credit.application.system.entity.Credit
 import me.dio.credit.application.system.entity.Customer
 import me.dio.credit.application.system.repositories.ICustomerRepository
 import org.junit.jupiter.api.AfterEach
@@ -133,6 +136,23 @@ class CustomerResourceTest {
                 .accept(MediaType.APPLICATION_JSON)
         )
             .andExpect(MockMvcResultMatchers.status().isNotFound)
+    }
+
+    @Test
+    fun `should get all customers and return 200 status`() {
+        //given
+        val customer: Customer = customerRepository.save(buildCustomerDto().toEntity())
+        //when
+        mockMvc.perform(
+            MockMvcRequestBuilders.get(URL)
+                .accept(MediaType.APPLICATION_JSON)
+
+        )
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].firstName").value(customer.firstName))
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].lastName").value(customer.lastName))
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].income").value(customer.income.toInt()))
+            .andExpect(MockMvcResultMatchers.jsonPath("$[0].email").value(customer.email))
     }
 
     @Test
