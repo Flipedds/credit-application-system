@@ -1,11 +1,8 @@
 package me.dio.credit.application.system.controllers
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import me.dio.credit.application.system.controllers.CreditResourceTest.Companion
-import me.dio.credit.application.system.controllers.dtos.CreditDto
 import me.dio.credit.application.system.controllers.dtos.CustomerDto
 import me.dio.credit.application.system.controllers.dtos.CustomerUpdateDto
-import me.dio.credit.application.system.entity.Credit
 import me.dio.credit.application.system.entity.Customer
 import me.dio.credit.application.system.repositories.ICustomerRepository
 import org.junit.jupiter.api.AfterEach
@@ -128,7 +125,7 @@ class CustomerResourceTest {
     @Test
     fun `should not find a costumer with invalid id and return 404 status`() {
         //given
-        val invalidId: Long = 2L
+        val invalidId = 2L
         //when
         //then
         mockMvc.perform(
@@ -172,7 +169,7 @@ class CustomerResourceTest {
     @Test
     fun `should not delete a costumer with invalid id and return 404 status`() {
         //given
-        val invalidId: Long = 2L
+        val invalidId = 2L
         //when
         //then
         mockMvc.perform(
@@ -204,7 +201,7 @@ class CustomerResourceTest {
     @Test
     fun `should not update customer by id and return 404 status`() {
         //given
-        val invalidId: Long = 2L
+        val invalidId = 2L
         val customerUpdateDto = buildCustomerUpdateDto()
         val customerUpdateDtoAsString = objectMapper.writeValueAsString(customerUpdateDto)
         //when

@@ -159,7 +159,7 @@ class CreditResourceTest {
             customerId = customer.id!!
         )
         val credit: Credit = creditRepository.save(creditDto.toEntity())
-        val fakeId: Int = 0
+        val fakeId = 0
         //when
         //then
         mockMvc.perform(
